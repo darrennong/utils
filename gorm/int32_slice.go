@@ -5,16 +5,16 @@ import (
 	"encoding/json"
 )
 
-type Int32s []int32
+type int32s []int32
 
 // Int32Array 自定义Gorm字段类型，必须使用指针类型
 type Int32Array struct {
-	*Int32s
+	*int32s
 }
 
 // String -> String Representation of Binary16
 func (arr *Int32Array) String() string {
-	bytes, _ := json.Marshal(arr.Int32s)
+	bytes, _ := json.Marshal(arr.int32s)
 	return string(bytes)
 }
 
@@ -24,18 +24,18 @@ func (arr *Int32Array) GormDataType() string {
 }
 
 func (arr *Int32Array) MarshalJSON() ([]byte, error) {
-	//items := any(arr.Int32s).([]int32)
-	return json.Marshal(arr.Int32s)
+	//items := any(arr.int32s).([]int32)
+	return json.Marshal(arr.int32s)
 }
 
 func (arr *Int32Array) UnmarshalJSON(by []byte) error {
-	return json.Unmarshal(by, &(arr.Int32s))
+	return json.Unmarshal(by, &(arr.int32s))
 }
 
 // Scan --> tells GORM how to receive from the database
 func (arr *Int32Array) Scan(value interface{}) error {
 	data, _ := value.([]byte)
-	return json.Unmarshal(data, &(arr.Int32s))
+	return json.Unmarshal(data, &(arr.int32s))
 }
 
 // Value -> tells GORM how to save into the database
@@ -44,5 +44,5 @@ func (arr *Int32Array) Value() (driver.Value, error) {
 }
 
 func (arr *Int32Array) Length() int {
-	return len(*(arr.Int32s))
+	return len(*(arr.int32s))
 }
