@@ -52,3 +52,11 @@ func NewInt32Array(len int) *Int32Array {
 		make([]int32, len),
 	}
 }
+
+func (arr *Int32Array) Set(i int, d int32) {
+	arr.int32s[i] = d
+}
+
+func (arr *Int32Array) Get(i int) int32 {
+	return arr.int32s[i]
+}
