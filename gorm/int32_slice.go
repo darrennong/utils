@@ -46,3 +46,9 @@ func (arr *Int32Array) Value() (driver.Value, error) {
 func (arr *Int32Array) Length() int {
 	return len(*(arr.int32s))
 }
+
+func NewInt32Array(len int) *Int32Array {
+	return &Int32Array{
+		make([]int32, len),
+	}
+}
