@@ -24,8 +24,8 @@ func (arr *Int32Array) GormDataType() string {
 }
 
 func (arr *Int32Array) MarshalJSON() ([]byte, error) {
-	//items := any(arr.int32s).([]int32)
-	return json.Marshal(arr.int32s)
+	items := ([]int32)(arr.int32s)
+	return json.Marshal(items)
 }
 
 func (arr *Int32Array) UnmarshalJSON(by []byte) error {
